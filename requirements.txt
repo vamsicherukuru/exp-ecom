@@ -22,9 +22,7 @@ django-livesync==0.5
 django-multiselectfield==0.1.12
 django-utils-six==2.0
 djangorestframework==3.11.0
-Faker==4.0.3
 gunicorn==20.0.4
-heroku==0.1.4
 idna==2.8
 Markdown==2.6.5
 oauthlib==3.0.1
