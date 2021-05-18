@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body_block %}
+
+<style>
+
+input[name='card_number']{
+
+    width: 350px;
+    font-size: 20px;
+    padding: 3px;
+    border-radius: 5px;
+    border: 2px solid grey;
+
+}
+input[name='cvv']{
+
+    width: 70px;
+ 
+
+}
+ input{
+     margin: 10px;
+     border-radius: 5px;
+     border: 2px solid grey;
+ }
+
+
+</style>
+
+
+
+
+    <h1>Payment</h1>
+
+
+
+
+    {% if payed %}
+    <h1>Check the order status in My orders</h1>
+
+ {% else %}
+    <div style="background-color: white; margin-left:300px; padding:10px;  width:600px; border:2px solid grey; border-radius:5px; font-family:Arial;">
+
+       <center>
+        <div  style="font-size: 20px; font-family:Arial; font-weight:bold;">
+      
+            <b>
+              
+              <img src="{% static 'images/arrow.png' %}" style="width:100px; margin-right:-100px; margin-bottom:-30px;" alt="">
+              shopping
+      
+      
+            </b>
+           </div>
+
+
+
+       </center>
+        <form  method="POST">
+
+            {% csrf_token %}
+                <label for="card_number" style="margin-left: 10px;">Card Number</label>
+                <br>
+            {{payment_form.card_number}}   
+
+<div style="float: right; margin-right:30px">
+    <img src="{% static 'images/visa.png' %}" width="70px;" alt=""> <br> <br>
+            <img src="{% static 'images/mastercard.png' %}" width="70px;" alt="">
+</div>
+<br>
+<label for="cvv" style="margin-left: 10px;">CVV</label>
+<label for="CardHolder_name" style="margin-left: 30px;">Cardholder Name</label> <br>
+            {{payment_form.cvv}}   
+            
+            {{payment_form.CardHolder_name}} <br>
+          
+            <input type="submit" name="" id="">
+
+        </form>
+
+
+
+
+    </div>
+    {% endif %}
+</center>
+
+
+
+
+
+{% endblock %}

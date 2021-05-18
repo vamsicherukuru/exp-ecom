@@ -1,0 +1,214 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body_block %}
+
+
+<style>
+
+
+
+
+
+
+    @import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+
+    * {
+      box-sizing: border-box;
+    }
+    
+    body {
+      color: black;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      font-family: 'Lato', sans-serif;
+      margin: 0;
+    }
+    
+    .movie-container {
+      margin: 20px 0;
+    }
+    
+    .movie-container select {
+      background-color: #fff;
+      border: 0;
+      border-radius: 5px;
+      font-size: 14px;
+      margin-left: 10px;
+      padding: 5px 15px 5px 15px;
+      -moz-appearance: none;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    
+    .container {
+      perspective: 1000px;
+      margin-bottom: 30px;
+    }
+    
+    .seat {
+      background-color: #444451;
+      height: 20px;
+      width: 25px;
+      margin: 30px;
+     
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+    
+    .seat.selected {
+      background-color: #6feaf6;
+    }
+    
+    .seat.occupied {
+      background-color: #fff;
+    }
+    
+    .seat:nth-of-type(2) {
+      margin-right: 18px;
+    }
+    
+    .seat:nth-last-of-type(2) {
+      margin-left: 18px;
+    }
+    
+    .seat:not(.occupied):hover {
+      cursor: pointer;
+      transform: scale(1.2);
+    }
+    
+    .showcase .seat:not(.occupied):hover {
+      cursor: default;
+      transform: scale(1);
+    }
+    
+    .showcase {
+      background: rgba(0, 0, 0, 0.1);
+      padding: 5px 10px;
+      border-radius: 5px;
+      color: #777;
+      list-style-type: none;
+      display: flex;
+      justify-content: space-between;
+    }
+    
+    .showcase li {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 10px;
+    }
+    
+    .showcase li small {
+      margin-left: 2px;
+    }
+    
+    .row {
+      display: flex;
+    }
+    
+    .screen {
+      background-color: #fff;
+      height: 70px;
+      width: 100%;
+      margin: 15px 0;
+      transform: rotateX(-45deg);
+      box-shadow: 0 3px 10px rgba(255, 255, 255, 0.7);
+    }
+    
+    p.text {
+      margin: 5px 0;
+    }
+    
+    p.text span {
+      color: #6feaf6;
+    }
+    
+
+
+
+
+
+</style>
+
+<center>
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <div style="margin:50px; background:white;">
+     {% if booked %}
+     <br><br>
+<h5>Pay online or Cash on Delivery?</h5>
+     <a type="submit" href="{% url 'bookings:payment' %}" class="btn btn-success" name="">Pay online</a>
+     <a type="submit" href="{% url 'bookings:home' %}" class="btn btn-success" name="">Cash on delivery</a>
+     <br><br>
+  
+ {% else %}
+ 
+ 
+<script>
+  alert("Please Note the name of product while ordering !");
+</script>
+     <div>
+         <center><h1 style="color: grey;">Payment gateway</h1></center>
+         <form method="POST" enctype="multipart/form-data">
+             {% csrf_token %}
+
+            <p>Order item</p>
+             {{ticket_form.movie}} <br>
+             
+             {{ticket_form.user}} <br>
+          
+
+             <table>
+               <thead>
+                 <th>Order Details</th>
+                 <th></th>
+               </thead>
+               <tbody>
+                 <tr>
+                   <td>Customer name:</td>
+                   <td>{{user.username}}</td>
+                 </tr>
+                 <tr>
+                  <td>Gender:</td>
+                  <td>{{user.userprofile.gender}}</td>
+                </tr>
+                <tr>
+                  <td>Age:</td>
+                  <td>{{user.userprofile.age}}</td>
+                </tr>
+                <tr>
+                  <td><b>Mobile Number</b>:</td>
+                  <td>{{user.userprofile.mobilenumber}}</td>
+                </tr>
+               
+                <tr>
+                  <td><b>Delivery location</b>:</td>
+                  <td>{{user.userprofile.Location}}</td>
+                </tr>
+               </tbody>
+             </table>
+
+
+<br>
+             
+             <button type="submit" style="border-radius: 0%;" class="btn btn-warning" name="">Place order</button>
+             </form>
+             <br><br>
+     </div>
+
+ {% endif %}
+    </div>
+
+
+
+    
+
+
+
+
+
+
+
+{% endblock %}

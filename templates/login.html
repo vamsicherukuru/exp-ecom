@@ -1,0 +1,65 @@
+{% load static %}
+{% block body_block %}
+
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<style>
+    body{
+        background: url("{% static 'images/back1.jpg' %}");
+    }
+    .dd{
+        width: 400px;
+        margin: 20px;
+        font-size: 25px;
+        padding: 5px;
+        
+    }
+    body{
+        background-color:;
+    }
+</style>
+<center><h1 style="color: black; margin-top:70px;">
+    <b>shopping.in</b><br>
+</h1></center>
+
+<center>
+    
+
+    <div style="margin-top:10px;background-image:linear-gradient(to bottom,rgba(0,0,0.1),rgba(255,255,255,0.2));width:500px;" >
+
+
+     
+
+        <form method="POST" action="{% url 'bookings:user_login' %}">
+    
+            {% csrf_token %}
+        
+        <br>
+            <input type="text" class="dd" name="username" id="" placeholder="username" required>
+        <br>
+            <input type="password" class="dd" name="password" id="" placeholder="password" required>
+            <br>
+            <input type="submit"  class="dd" class="btn btn-success" name="" value="Login" id="" >
+        
+        </form>
+        
+    </div>
+    <p style="color: white;">
+        Not a registered user? 
+    </p>
+    <a href="{% url 'bookings:register' %}" class="btn btn-warning" style="margin-top: 15px; margin-bottom:15px;">register now</a>
+
+</center>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+<!-- aUG=Kb7RHtrw)33(d9vvOnANK6tz@b$s -->

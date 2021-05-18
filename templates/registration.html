@@ -1,0 +1,143 @@
+{% load static %}
+{% block body_block %}
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+
+
+
+</head>
+<style>
+body{
+    background: url("{% static 'images/back1.jpg' %}");
+}
+    input{
+       
+        width: 400px;
+        border-radius: 10px;
+        height: 40px;
+        margin: 10px;
+        border:2px solid white;
+        border-radius: 0%;
+        padding: 5px;
+    }
+ 
+  #id_gender{
+      width: 200px;
+      margin-left: 130px;
+      padding: 5px;
+
+      
+  }
+  #id_gender:hover{
+    width: 200px;
+    background-color: black;
+    color: white;
+    padding: 5px;
+    
+    
+}
+#id_occupation:hover{
+    width: 200px;
+    background-color: black;
+    color: white;
+    padding: 5px;
+    
+    
+}
+#id_hq:hover{
+    width: 200px;
+    background-color: black;
+    color: white;
+    padding: 5px;
+    
+    
+    
+}
+#id_income:hover{
+    width: 200px;
+    background-color: black;
+    color: white;
+    
+    padding: 5px;
+}
+input:hover{
+    background-color: black;
+    color: white;
+    padding: 5px;
+}
+  #id_hq{
+    width: 200px;
+    padding: 5px;
+}
+#id_income{
+    width: 200px;
+    margin-left: 70px;
+    padding: 5px;
+}
+#id_occupation{
+    width: 200px;
+    margin-left: 90px;
+    padding: 5px;
+}
+    p{
+        color: white;
+    }
+</style>
+
+
+
+<center>
+   <div style="margin:50px">
+    {% if registered %}
+    <h1 style="color: black;"> <b>CONGRATULATIONS</b> <br> 
+    
+        ₹ 1500 Credited to your account
+
+    <br>
+    <b>Happy Shopping !</b>
+    </h1>
+
+    <a href="{% url 'bookings:user_login' %}">Login Now</a>
+ 
+{% else %}
+<center><h1 style="color: black;">
+    <b>shopping.in</b><br>
+</h1></center>
+<center>
+    <div style="border:1px solid black; width:500px;padding-top:50px;">
+        
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            {{user_form.username}}<br>
+            {{user_form.password}} <br>
+            {{user_form.email}} <br>
+            {{profile_pic_form.mobilenumber}}
+                
+                {{profile_pic_form.Location}}
+                {{profile_pic_form.age}}
+                {{profile_pic_form.address}}
+
+                <span style="color: white;">Educational Qualification: &nbsp;</span>{{profile_pic_form.hq}}
+                <br><br>
+
+                <span style="color: white;">Occupation: &nbsp;
+                </span>{{profile_pic_form.occupation}}
+               
+                <br><br>
+                <label for="income" style="color: white;">Yearly Income</label>
+                : &nbsp;;{{profile_pic_form.income}} <br> <br>
+                <span style="color: white;">Gender:</span> {{profile_pic_form.gender}}<br> <br>
+            <button type="submit" class="btn btn-success" name="">Sign Up</button>
+            </form>
+    </div>
+        
+</center>
+{% endif %}
+   </div>
+</center>
+
+{% endblock %}
